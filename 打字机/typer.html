@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: radial-gradient(circle,#444,#000,#000);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            text-align: center;
+             /* 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式 */
+            justify-content: center;
+        }
+        main{
+            margin-top: 100px;
+        }
+        #content{
+            font-size: 350px;
+            color: lightgreen;
+            text-shadow: 0 0 50px #666;
+        }
+        #notice{
+            font-size:16px;
+            color: #888;
+            text-shadow: 0 0 20px #666
+        }
+        #content.error{
+            color:red;
+        }
+    </style>
+    <link href="./animate.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div id="content">A</div>
+        <div id="notice">请在屏幕上输入对应的字母</div>
+    </main>
+</body>
+<script src="./typer.js"></script>
+</html>
