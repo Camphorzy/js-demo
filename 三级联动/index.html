@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	body{
+		background: aliceblue;
+	}
+	.container{
+		width: 300px;
+		margin: 100px auto;
+	}
+	.row{
+		width: 100%;
+		height: 40px;
+		background: white;
+		border-radius: 14px;
+		margin-bottom: 10px; 
+	}
+	.row p{
+		display: inline-block;
+		line-height: 40px;
+		padding: 0 10px;
+		color: #03a9f4;
+	}
+/* 伪类元素 */
+	.row p::after{
+		content: "|";
+		color: #ccc;
+		padding-left: 15px;
+	}
+	.row div{
+		display: inline-block;
+		width: 70%;
+		height: 100%;
+		color: #000;
+	}
+	.row div select{
+		width: 100%;
+		height: 30px;
+		border-radius: 5px;
+		border-color: aliceblue;
+	}
+</style>
+<body>
+	<div class="wrap">
+		<ul class="container">
+			<li class="row">
+				<p>省会</p>
+				<div class="select">
+					<select id="province" name="" onchange="provinceChange()">
+						<option>1</option>
+					</select>
+				</div>
+			</li>
+			<li class="row">
+				<p>城市</p>
+				<div class="select">
+					<select id="city" name="" onchange="cityChange()"></select>
+				</div>
+			</li>
+			<li class="row">
+				<p>学校</p>
+				<div class="select">
+					<select id="school" name=""></select>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript" src="AllSchool.js"></script>
+<script type="text/javascript">
+	//(function(){
+		var provinceNode=document.getElementById('province');
+		var cityNode=document.getElementById('city');
+		var schoolNode=document.getElementById('school');
+		//先将省遍历出来
+		var provinceArr='';
+		var provlen=province.length;
+		for(var i=0;i<provlen;i++){
+			provinceArr+='<option value='+province[i][0]+'>'+province[i][1]+'</option>'
+		}
+		provinceNode.innerHTML=provinceArr;
+		//console.log(provinceArr);
+
+		//将城市遍历出来
+		//console.log(provinceNode.value);
+		var cityArr=city[provinceNode.value];
+		var ctylen=cityArr.length;
+		var citystr='';
+		for(var i=0;i<ctylen;i++){
+			citystr+='<option value='+cityArr[i][0]+'>'+cityArr[i][1]+'</option>'
+		}
+		cityNode.innerHTML=citystr;
+		//console.log(citystr);
+		//学校
+		var schoolArr=allschool[cityNode.value];
+		//console.log(schoolArr);
+		var schlen=schoolArr.length;
+		var schoolstr='';
+		for(var i=0;i<schlen;i++){
+			schoolstr+='<option>'+schoolArr[i][2]+'</option>'
+		}
+		schoolNode.innerHTML=schoolstr;
+
+		//改变事件
+		//省变时
+		function provinceChange(){
+			//城市变
+			var currentProvince=provinceNode.value;
+			var cityArr = city[currentProvince];
+			var clen=cityArr.length
+			selectCstr = '';
+			for(var i=0;i<clen;i++){
+			selectCstr+='<option value='+cityArr[i][0]+'>'+cityArr[i][1]+'</option>'
+			}
+			cityNode.innerHTML=selectCstr;
+			//console.log(selectCstr);
+			//学校变
+			schoolArr = allschool[cityNode.value];
+			var slen=schoolArr.length;
+            selectSstr = '';
+            for (var i =0; i < slen; i++) {
+                 selectSstr += "<option >" + schoolArr[i][2] + "</option>";
+            }
+            schoolNode.innerHTML=selectSstr;
+		}
+		//城市变学校变
+		function cityChange(){
+			var currentCity=cityNode.value;
+			var schoolArr=allschool[currentCity];
+			var slen=schoolArr.length;
+			selectSstr = '';
+            for (var i = 0; i < slen; i++) {
+                 selectSstr += "<option >" + schoolArr[i][2] + "</option>";
+            }
+            schoolNode.innerHTML=selectSstr;
+
+		}
+
+	//}())
+	
+
+</script>
+</html>
